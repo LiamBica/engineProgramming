@@ -17,6 +17,7 @@ public abstract class GameObject extends ProcessingEntity
 	public ArrayList<GameComponent> components;
 	public Transform transform = new Transform();
 	public void checkCollisions( BoundingBox bb) {}
+	public void bounceBall() {}
 	
 	
 	public abstract void start();

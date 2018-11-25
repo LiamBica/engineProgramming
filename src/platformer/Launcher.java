@@ -20,6 +20,13 @@ public class Launcher extends BaseLauncher
 		//Builds Player
 		Player player = new Player(parent, parent.width/2, parent.height/2, 60, 60); //Calling player class
 		player.start();
+		
+		Circle circle = new Circle(parent, parent.width/2, parent.height/2, 60,60);
+		circle.start();
+		
+		this.gameManager.addObject(circle);
+		this.gameManager.addPlayerGameObjects(circle);
+		
 		this.gameManager.addObject(player);
 		this.gameManager.addPlayerGameObjects(player);
 		

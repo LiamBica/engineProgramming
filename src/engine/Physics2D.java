@@ -71,7 +71,9 @@ public class Physics2D extends GameComponent
 		{
 			velocity.y = 4f;
 		}
+		
 	}
+	
 	
 
 }
