@@ -29,6 +29,7 @@ public class Launcher extends BaseLauncher
 		
 		this.gameManager.addObject(player);
 		this.gameManager.addPlayerGameObjects(player);
+		this.gameManager.addGameBoundingBoxes(player);
 		
 		//Builds Platforms
 		int platforms = 8; //No of Platforms

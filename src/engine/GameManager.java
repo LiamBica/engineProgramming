@@ -72,6 +72,7 @@ public class GameManager
 	public void UpdateAll() 
 	{
 		checkCollisions();
+		
 		parent.background(background);
 		for (int i = 0; i < gameObjects.size(); i ++) 
 		{

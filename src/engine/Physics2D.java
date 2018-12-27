@@ -29,7 +29,6 @@ public class Physics2D extends GameComponent
 	public void update()
 	{
 		
-		gForce();
 		this.transform.position.y += velocity.y;
 
 	}
@@ -42,7 +41,8 @@ public class Physics2D extends GameComponent
 	}
 	
 	public void checkCollisions(BoundingBox _boundingBox) {
-		if( this.boxCollider2D.checkCollision(_boundingBox)) {
+		if( this.boxCollider2D.checkCollision(_boundingBox)) 
+		{
 			velocity = new PVector(0,0);
 			isGrounded();
 			hasHitSomething = true;
@@ -50,29 +50,11 @@ public class Physics2D extends GameComponent
 	}
 	
 	
-	public void jump(int force)
-	{
-		if(canJump) 
-		{
-			velocity.y = -force;
-			canJump = false;
-		}
-	}
-	
 	public void isGrounded()
 	{
 		canJump = true;
 	}
 	
-	private void gForce()
-	{
-		velocity.y += gravity;
-		if(velocity.y >= 4f)
-		{
-			velocity.y = 4f;
-		}
-		
-	}
 	
 	
 

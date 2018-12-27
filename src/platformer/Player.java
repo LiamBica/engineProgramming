@@ -29,27 +29,22 @@ public class Player extends Sprite {
 		super(p);
 		speed = 3.0f;
 	}
-	
+	@Override
 	public void start() {	
-		
-		//this.transform.position.x = parent.width / 2;
-		this.transform.position.y = parent.width -199;
+		super.start();
+		this.transform.position.y = parent.width -199;//this.transform.position.x = parent.width / 2;
 		this.transform.boundingBox.fromSize(size);
-		this.physics = new Physics2D(this);
-		this.physics.start();
+
+		
 		
 	}
 	
 	
-	public void checkCollisions(BoundingBox bb) 
-	{
-	this.physics.checkCollisions(bb);
-	}
+	
 
 	@Override
 	public void update() 
 	{
-		// TODO Auto-generated method stub
 	}
 	
 	@Override
