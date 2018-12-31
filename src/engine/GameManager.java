@@ -20,6 +20,7 @@ public class GameManager
 			gameObjects = new ArrayList<GameObject>();
 			playerGameObjects = new ArrayList<GameObject>();
 			gameBoundingBoxes = new ArrayList<BoundingBox>();
+			
 	}	
 	
 	//Game Objects
@@ -72,6 +73,7 @@ public class GameManager
 	public void UpdateAll() 
 	{
 		checkCollisions();
+		
 		
 		parent.background(background);
 		for (int i = 0; i < gameObjects.size(); i ++) 

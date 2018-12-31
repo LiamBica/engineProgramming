@@ -16,12 +16,17 @@ public class Player extends Sprite {
 	private Physics2D physics;
 	public int stroke = parent.color(120,120,255); //rgb
 	public int fill = parent.color(255);
+	private int xPos, yPos;
 	
 	
 	public Player(PApplet p) 
 	{
 		super(p);
 		
+	}
+	public void setXPos(int xPos) 
+	{
+		this.xPos = xPos;
 	}
 
 	public Player(PApplet p, float x, float y, float w, float h) 
@@ -32,15 +37,22 @@ public class Player extends Sprite {
 	@Override
 	public void start() {	
 		super.start();
-		this.transform.position.y = parent.width -199;//this.transform.position.x = parent.width / 2;
 		this.transform.boundingBox.fromSize(size);
+		this.transform.position.y = parent.width -199;//this.transform.position.x = parent.width / 2;
 
 		
 		
 	}
 	
 	
-	
+	public boolean hitPlayer(int circleX, int circleY) 
+	{
+		if ((circleX >= this.transform.position.x) && (circleX <= this.transform.position.x + this.size.x) && ((circleY >= this.transform.position.y) && (circleY <= this.transform.position.y + this.size.y)))
+		{
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void update() 

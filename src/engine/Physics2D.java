@@ -10,7 +10,7 @@ public class Physics2D extends GameComponent
 	
 	float gravity = 0.1f;
 	boolean canJump = true;
-	boolean hasHitSomething = false;
+	public boolean hasHitSomething = false;
 	
 	
 	public Physics2D(GameObject g)
@@ -43,7 +43,6 @@ public class Physics2D extends GameComponent
 	public void checkCollisions(BoundingBox _boundingBox) {
 		if( this.boxCollider2D.checkCollision(_boundingBox)) 
 		{
-			velocity = new PVector(0,0);
 			isGrounded();
 			hasHitSomething = true;
 		}
