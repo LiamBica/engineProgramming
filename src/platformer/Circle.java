@@ -8,24 +8,27 @@ public class Circle extends Sprite {
 	//Player Characteristics
 	int stroke = parent.color(120,120,255); //rgb
 	int fill = parent.color(255);
-	float w;
-	float h;
+	float w = 30;
+	float h = 30;
+	float xvar;
 
+	//Movement speed;
 	private int xDir = 3, yDir = -3;
+	Player paddle;
 	
 	
 	public Circle(PApplet p) 
 	{
+		
 		super(p);
-		this.size.x = w;
-		this.size.y = h;
+		
+
 	}
 
 	
 	public void start() 
 	{		
-		w = 30;
-		h = 30;
+		Player paddle = new Player(parent);
 		this.transform.position = new PVector(parent.random(parent.width), parent.random(parent.height));		
 	}
 
@@ -33,17 +36,50 @@ public class Circle extends Sprite {
 	public void bounceBall() 
 	{  
 		{
-		//if the circle has reached the edge resolution speed reversed
-		if (this.transform.position.x > parent.width || this.transform.position.x < 0) 
+			//if the circle has reached the edge resolution speed reversed
+			if (this.transform.position.x > parent.width || this.transform.position.x < 0) 
 			{
-				xDir *= -1;
+				bounceLeft();
 			}
-		
-		if (this.transform.position.y < 0 || this.transform.position.y > parent.height) 
+			//If the ball hits the ceiling it will bounce down
+			if (this.transform.position.y < 0) 
 			{
-				yDir *= -1;
+				bounceY();
 			}
+			//If ball falls through it's removed until the game is reset
+			if(this.transform.position.y >= parent.height + 30) 
+			{
+				this.fill = parent.color(0);
+				this.stroke = parent.color(0);
+				}
+			//if the ball hits the paddle's Y axis 				//If the ball hits between the right side of the paddle and the middle [    ||====]
+			if (this.transform.position.y == parent.height - 100 && (this.transform.position.x <= parent.mouseX +60 && this.transform.position.x > parent.mouseX) )
+			{
+				bounceRight();
+				bounceY();
+			}
+	
+			//If the ball hits the paddle's Y axis 			//If the ball hits between the left side of the paddle and the middle [=====||     ]
+			if (this.transform.position.y == parent.height - 100 && (this.transform.position.x < parent.mouseX  && this.transform.position.x >= parent.mouseX -60) )
+			{
+				bounceLeft();
+				bounceY();
+			}
+
 		}	
+	}
+	
+	public void bounceLeft() 
+	{
+		xDir *= -1;
+	}
+	public void bounceRight() 
+	{
+		xDir *= 1;
+	}
+	public void bounceY() 
+	{
+		yDir *= -1;
 	}
 	
 	public void movement() 
@@ -56,8 +92,10 @@ public class Circle extends Sprite {
 	@Override
 	public void update() 
 	{
-		bounceBall();
 		movement();
+		bounceBall();
+	//	parent.println(parent.mouseX );
+	//	parent.println(this.transform.position);
 	}
 	
 	@Override

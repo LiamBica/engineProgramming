@@ -18,20 +18,20 @@ public class Launcher extends BaseLauncher
 		super.StartGame(); 
 		
 		//Builds Player
-		Player player = new Player(parent, parent.width/2, parent.height/2, 60, 60); //Calling player class
+		Player player = new Player(parent); //Calling player class
 		player.start();
 		
 		Circle circle = new Circle(parent);
 		circle.start();
 		
 		this.gameManager.addObject(circle);
-		this.gameManager.addPlayerGameObjects(circle);
+		
 		
 		this.gameManager.addObject(player);
-		this.gameManager.addPlayerGameObjects(player);
-		this.gameManager.addGameBoundingBoxes(player);
 		
-		//Builds Platforms
+		
+		
+		/*//Builds Platforms
 		int platforms = 8; //No of Platforms
 		for(int i = 0; i < platforms; i++) 
 		{
@@ -40,6 +40,7 @@ public class Launcher extends BaseLauncher
 			this.gameManager.addObject(platform);
 			this.gameManager.addGameBoundingBoxes(platform);
 		}
+		*/
 		
 	}
 	

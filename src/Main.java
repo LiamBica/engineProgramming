@@ -10,27 +10,18 @@ public class Main extends PApplet
 	{
 		PApplet.main("Main");
 	}
-
 	Launcher launcher;
-
-	private int xSpeed;
 	
 	public void setup() 
 	{
-		
 		background(0); //Black background
 		launcher = new Launcher(this);
-
 		launcher.StartGame();
-		
-		
 	}
 	
 	public void draw() 
 	{
-		
 		launcher.UpdateAll();
-
 	}
 	
 	public void settings() 
