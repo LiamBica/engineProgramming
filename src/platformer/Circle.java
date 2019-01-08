@@ -5,51 +5,30 @@ import processing.core.*;
 
 public class Circle extends Sprite {
 	
-	public float speed = 1f;
-	public float yspeed = 1f;
-	public boolean hitTile = false;
-	float gravity = 0.1f;
-	public PVector velocity = new PVector(0, -1);
-	
 	//Player Characteristics
-	public PVector size = new PVector(25,25); //width + height 
-	private Physics2D physics;
-	public int stroke = parent.color(120,120,255); //rgb
-	public int fill = parent.color(255);
-	private Player paddle;
-	private int xDir = 1, yDir = -1;
+	int stroke = parent.color(120,120,255); //rgb
+	int fill = parent.color(255);
+	float w;
+	float h;
+
+	private int xDir = 3, yDir = -3;
 	
 	
 	public Circle(PApplet p) 
 	{
 		super(p);
-		
+		this.size.x = w;
+		this.size.y = h;
 	}
 
-	public Circle(PApplet p, float x, float y, float w, float h) 
-	{
-		super(p);
-		speed = 1.0f;
-		yspeed = 1.0f;
-	}
 	
 	public void start() 
-	{	
-		this.transform.boundingBox.fromSize(size);
-		this.transform.position = new PVector(parent.random(parent.width), parent.random(parent.height));
-		this.velocity.rotate(parent.random(PApplet.TWO_PI));
-		this.physics = new Physics2D(this);
-		this.physics.start();
-		paddle = new Player(parent);
+	{		
+		w = 30;
+		h = 30;
+		this.transform.position = new PVector(parent.random(parent.width), parent.random(parent.height));		
 	}
 
-	
-	public void checkCollisions(BoundingBox bb) 
-	{
-		this.physics.checkCollisions(bb);
-		bounceBall();
-		movement();
-	}
 	
 	public void bounceBall() 
 	{  
@@ -73,29 +52,12 @@ public class Circle extends Sprite {
 		this.transform.position.y += yDir;
 	}
 	
-	public void setXDir (int xDir) 
-	{
-		this.xDir = xDir;
-	}
-	public void setYDir (int yDir) 
-	{
-		this.yDir = yDir;
-	}
-
-	public int getXDir()
-	{
-		return xDir;
-	}
-	
-	public int getYDir() 
-	{
-		return yDir;
-	}
 	
 	@Override
 	public void update() 
 	{
-		
+		bounceBall();
+		movement();
 	}
 	
 	@Override
@@ -104,7 +66,7 @@ public class Circle extends Sprite {
 		super.render();
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
-		parent.ellipse(this.transform.position.x, this.transform.position.y,this.size.x, this.size.y);
+		parent.ellipse(this.transform.position.x, this.transform.position.y, w, h);
 	}
 
 }
