@@ -9,13 +9,14 @@ public abstract class GameObject extends ProcessingEntity
 	{
 		super(p);
 		this.components = new ArrayList<GameComponent>();
+		transform = new Transform(this);
 	}
 
 	public String name;
 	public String tag;
-	
+	public boolean destroy = false;
 	public ArrayList<GameComponent> components;
-	public Transform transform = new Transform();
+	public Transform transform;
 	public void checkCollisions( BoundingBox bb) {}
 	
 	

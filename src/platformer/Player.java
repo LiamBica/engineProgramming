@@ -15,7 +15,7 @@ public class Player extends Sprite {
 	public float h = 20;
 	public float x;
 	public float y;
-	
+	public PVector position = new PVector();
 	public Player(PApplet p) 
 	{
 		super(p);
@@ -35,6 +35,7 @@ public class Player extends Sprite {
 	@Override
 	public void update() 
 	{
+		position = transform.position;
 		y = this.transform.position.y;
 	}
 	

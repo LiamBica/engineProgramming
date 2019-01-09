@@ -3,10 +3,16 @@ import processing.core.*;
 
 public class BoundingBox 
 {
-	public BoundingBox() {}
 
-	public BoundingBox(int _l, int _r, int _t, int _b) 
+	public GameObject parentGameObject;
+	public BoundingBox(GameObject o, int _l, int _r, int _t, int _b) 
 	{
+		if(o != null) {
+			parentGameObject = o;
+		}else {
+			PApplet.println("Error no parent");
+		}
+		
 		left = _l;
 		right = _r;
 		top = _t;

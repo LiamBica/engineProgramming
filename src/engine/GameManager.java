@@ -55,7 +55,9 @@ public class GameManager
 		 for(int j = 0; j < playerGameObjects.size(); j++){
 	            GameObject p = playerGameObjects.get(j);
 	            p.checkCollisions(bb);
-	           
+	           if(bb.parentGameObject.destroy) {
+	        	   gameBoundingBoxes.remove(bb);
+	           }
 	        }
         
      }
@@ -79,6 +81,10 @@ public class GameManager
 		for (int i = 0; i < gameObjects.size(); i ++) 
 		{
 			GameObject g = gameObjects.get(i);
+			if(g.destroy) {
+				gameObjects.remove(g);
+				continue;
+			}
 			g.update();
 			g.render();
 		}
