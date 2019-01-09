@@ -6,6 +6,7 @@ import processing.core.PApplet;
 public class Launcher extends BaseLauncher 
 {
 
+	BallCircle player;
 	
 	public Launcher(PApplet p) 
 	{
@@ -18,14 +19,14 @@ public class Launcher extends BaseLauncher
 		super.StartGame(); 
 		
 		//Builds Player
-		Player player = new Player(parent); //Calling player class
+		Paddle player = new Paddle(parent); //Calling player class
 		player.start();
 		
-		BallCircle circle = new BallCircle(parent);
-		circle.start();
+		//BallCircle circle = new BallCircle(parent);
+		//circle.start();
 		
-		this.gameManager.addObject(circle);
-		this.gameManager.addPlayerGameObjects(circle);
+	//	this.gameManager.addObject(circle);
+	//	this.gameManager.addPlayerGameObjects(circle);
 		
 		this.gameManager.addObject(player);
 		
@@ -33,13 +34,16 @@ public class Launcher extends BaseLauncher
 		
 		
 		//Builds Platforms
-		int platforms = 10; //No of Platforms
-		for(int i = 0; i < platforms; i++) 
+		spawnTiles(10);
+		
+		int balls = 1; //No of Platforms
+		for(int i = 0; i < balls; i++) 
 		{
-			Tile platform = new Tile(parent, 50 + i * 55, parent.height-400,50, 20);
-			platform.start();
-			this.gameManager.addObject(platform);
-			this.gameManager.addGameBoundingBoxes(platform);
+			BallCircle ball = new BallCircle(parent, parent.width / 2 + parent.random(-50, 50), parent.height - 200 + parent.random(-50, 50), player);
+			ball.start();
+			this.gameManager.addObject(ball);
+			this.gameManager.addPlayerGameObjects(ball);
+		
 		}
 
 		
@@ -48,6 +52,22 @@ public class Launcher extends BaseLauncher
 	public void UpdateAll() 
 	{
 		super.UpdateAll();
+		parent.text(BallCircle.points, parent.width/12, parent.height/12);
 	}
+	
+	public void spawnTiles(int numOfTiles) {
+		int platforms = numOfTiles; //No of Platforms
+		for(int i = 0; i < platforms; i++) 
+		{
+			Tile platform = new Tile(parent, 50 + i * 55, parent.height-400,50, 20);
+			platform.start();
+			this.gameManager.addObject(platform);
+			this.gameManager.addGameBoundingBoxes(platform);
+		
+		}
+		
+		
+	}
+	
 
 }
