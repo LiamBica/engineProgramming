@@ -58,6 +58,7 @@ public class GameManager
 	           if(bb.parentGameObject.destroy) {
 	        	   gameBoundingBoxes.remove(bb);
 	           }
+
 	        }
         
      }

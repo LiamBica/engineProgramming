@@ -8,12 +8,13 @@ public class BallCircle extends Sprite {
 	//Player Characteristics
 	int stroke = parent.color(120,120,255); //rgb
 	int fill = parent.color(255);
-	
+	Paddle paddle;
 	public float x;
 	public float y;
 	public float w = 30;
 	public float h = 30;
-
+	public boolean dead = false;
+	public static int points;
 
 	//Movement speed;
 	private int xDir = 4, yDir = -4;
@@ -22,20 +23,29 @@ public class BallCircle extends Sprite {
 	public BallCircle(PApplet p) 
 	{
 		super(p);
+	
 	}
 
-	
+	public BallCircle(PApplet p, float x, float y, Paddle paddle) 
+	{
+		super(p);
+		this.paddle = paddle; 
+		this.x = x;
+		this.y = y;
+		this.transform.position = new PVector(x, y);
+	}
+
 	public void start() 
 	{	
 		
-		this.transform.position = new PVector(parent.width / 2, parent.height - 200);
+		this.points = 0;
 		this.size.x = w;
 		this.size.y = h;
 		this.transform.boundingBox.fromSize(size);
 	}
 
 	
-	public void bounceBall() 
+	 void bounceBall() 
 	{  
 		
 			
@@ -54,32 +64,27 @@ public class BallCircle extends Sprite {
 			{
 				//this.fill = parent.color(0);
 				//this.stroke = parent.color(0);
-				this.start();
-				bounceY();
-				}
+				destroy = true;
+			}
 			//if the ball hits the paddle's Y axis 				//If the ball hits between the right side of the paddle and the middle [    ||====]
-			if (this.transform.position.y == parent.height - 100 && (this.transform.position.x <= parent.mouseX +60 && this.transform.position.x > parent.mouseX) )
-			{
-				bounceRight();
-				bounceY();
+			BoundingBox paddle_bb =  this.paddle.transform.WorldBoundingBox();
+			BoundingBox ball_bb =  this.transform.WorldBoundingBox();
+			if(ball_bb.bottom >= paddle_bb.top ) {
+				if(this.transform.position.y <= paddle_bb.bottom) {
+					if(this.transform.position.x > paddle_bb.left && this.transform.position.x < paddle_bb.right) {
+						
+						//bounceRight();
+						bounceY();
+					}
+				}
+				
 			}
-	
-			//If the ball hits the paddle's Y axis 			//If the ball hits between the left side of the paddle and the middle [=====||     ]
-			if (this.transform.position.y == parent.height - 100 && (this.transform.position.x < parent.mouseX  && this.transform.position.x >= parent.mouseX -60) )
-			{
-				bounceLeft();
-				bounceY();
-			}
-			if (this.transform.position.y == - 100 && (this.transform.position.x < parent.mouseX  && this.transform.position.x >= parent.mouseX -60) )
-			{
-				bounceLeft();
-				bounceY();
-			}
-//ball falls of bottom of screen?
+		
+		
 			
 		
 	}
-	
+
 	public void bounceLeft() 
 	{
 		xDir *= -1;
@@ -105,14 +110,14 @@ public class BallCircle extends Sprite {
 		boolean ballUnder = bb.bottom > ball_bb.top;
 		boolean ballOver = bb.top > ball_bb.bottom;
 		if(ballUnder && !ballOver)  {
-			PApplet.println("hit left: "+ bb.left + " right: "+ bb.right + ", ball top: " + ball_bb.top + " bb.bottom: " + bb.bottom );
+		//	PApplet.println("hit left: "+ bb.left + " right: "+ bb.right + ", ball top: " + ball_bb.top + " bb.bottom: " + bb.bottom );
 			
 			if(this.transform.position.x < bb.right && this.transform.position.x > bb.left) {
 				PApplet.println("$$$$$$$$$$$$$$$$$$$$$  bouncing");
 				bounceY();
+				points++;
 				//tile destroy
 				bb.parentGameObject.destroy = true;
-				
 			}
 			
 		}
