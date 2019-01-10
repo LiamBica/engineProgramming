@@ -17,17 +17,10 @@ public class Launcher extends BaseLauncher
 	public void StartGame() 
 	{
 		super.StartGame(); 
-		
+	
 		//Builds Player
 		Paddle player = new Paddle(parent); //Calling player class
 		player.start();
-		
-		//BallCircle circle = new BallCircle(parent);
-		//circle.start();
-		
-	//	this.gameManager.addObject(circle);
-	//	this.gameManager.addPlayerGameObjects(circle);
-		
 		this.gameManager.addObject(player);
 		
 		
@@ -43,7 +36,8 @@ public class Launcher extends BaseLauncher
 			ball.start();
 			this.gameManager.addObject(ball);
 			this.gameManager.addPlayerGameObjects(ball);
-		
+			
+
 		}
 
 		

@@ -23,7 +23,6 @@ public class BallCircle extends Sprite {
 	public BallCircle(PApplet p) 
 	{
 		super(p);
-	
 	}
 
 	public BallCircle(PApplet p, float x, float y, Paddle paddle) 
@@ -37,7 +36,6 @@ public class BallCircle extends Sprite {
 
 	public void start() 
 	{	
-		
 		this.points = 0;
 		this.size.x = w;
 		this.size.y = h;
@@ -66,23 +64,35 @@ public class BallCircle extends Sprite {
 				//this.stroke = parent.color(0);
 				destroy = true;
 			}
-			//if the ball hits the paddle's Y axis 				//If the ball hits between the right side of the paddle and the middle [    ||====]
+			//if the ball hits the paddle's Y axis 		//If the ball hits between the right side of the paddle and the middle [    ||====]
 			BoundingBox paddle_bb =  this.paddle.transform.WorldBoundingBox();
 			BoundingBox ball_bb =  this.transform.WorldBoundingBox();
-			if(ball_bb.bottom >= paddle_bb.top ) {
-				if(this.transform.position.y <= paddle_bb.bottom) {
-					if(this.transform.position.x > paddle_bb.left && this.transform.position.x < paddle_bb.right) {
-						
-						//bounceRight();
+			if(ball_bb.bottom >= paddle_bb.top ) 
+			{
+				if(this.transform.position.y <= paddle_bb.bottom) 
+				{			
+
+
+					if(ball_bb.right >= paddle_bb.left && ball_bb.left <= paddle_bb.right) 
+					{
 						bounceY();
 					}
+					/*
+					if(ball_bb.right >= paddle_bb.left && (ball_bb.top > paddle_bb.top && ball_bb.bottom < paddle_bb.bottom || ball_bb.bottom < paddle_bb.top && ball_bb.bottom > paddle_bb.bottom) )
+					{
+						bounceLeft();
+						PApplet.println("hit RIGHT$$$$$$$$$$$$$$$$$$$$$$$$");
+					}
+					if(ball_bb.left <= paddle_bb.right &&(ball_bb.top > paddle_bb.top && ball_bb.top < paddle_bb.bottom && ball_bb.bottom < paddle_bb.top && ball_bb.bottom > paddle_bb.bottom))
+					{
+						bounceRight();
+						PApplet.println("hit LEFT$$$$$$$$$$$$$$$$$$$$$$$$");
+					}
+					*/
+					
+					
 				}
-				
 			}
-		
-		
-			
-		
 	}
 
 	public void bounceLeft() 
@@ -111,15 +121,14 @@ public class BallCircle extends Sprite {
 		boolean ballOver = bb.top > ball_bb.bottom;
 		if(ballUnder && !ballOver)  {
 		//	PApplet.println("hit left: "+ bb.left + " right: "+ bb.right + ", ball top: " + ball_bb.top + " bb.bottom: " + bb.bottom );
-			
-			if(this.transform.position.x < bb.right && this.transform.position.x > bb.left) {
+			if(this.transform.position.x < bb.right && this.transform.position.x > bb.left) 
+			{
 				PApplet.println("$$$$$$$$$$$$$$$$$$$$$  bouncing");
 				bounceY();
 				points++;
 				//tile destroy
 				bb.parentGameObject.destroy = true;
 			}
-			
 		}
 	}
 	
