@@ -23,5 +23,9 @@ public abstract class BaseLauncher
 	{
 		gameManager.UpdateAll();
 	}
+	
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    	gameManager.mouseClicked(mouseX, mouseY, mouseButton);
+    	}
 
 }

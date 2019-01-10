@@ -11,7 +11,7 @@ public class GameManager
 	private ArrayList<GameObject> playerGameObjects;
 	private ArrayList<BoundingBox> gameBoundingBoxes;
 	
-	public int background = 0;
+	public static int background = 0;
 	public PApplet parent;
 
 	public GameManager(PApplet p) 
@@ -89,5 +89,17 @@ public class GameManager
 			g.update();
 			g.render();
 		}
+	}
+
+
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) 
+		
+	{
+		for(int i = 0; i < playerGameObjects.size(); i++) 
+		{
+			GameObject g = playerGameObjects.get(i);
+			g.mouseClicked(mouseX, mouseY, mouseButton);
+		}
+		
 	}
 }

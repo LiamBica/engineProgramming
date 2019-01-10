@@ -77,20 +77,19 @@ public class BallCircle extends Sprite {
 					{
 						bounceY();
 					}
-					/*
-					if(ball_bb.right >= paddle_bb.left && (ball_bb.top > paddle_bb.top && ball_bb.bottom < paddle_bb.bottom || ball_bb.bottom < paddle_bb.top && ball_bb.bottom > paddle_bb.bottom) )
+					
+					if(ball_bb.right >= paddle_bb.left && (ball_bb.top > paddle_bb.top && ball_bb.bottom < paddle_bb.bottom))
 					{
 						bounceLeft();
+						
 						PApplet.println("hit RIGHT$$$$$$$$$$$$$$$$$$$$$$$$");
 					}
-					if(ball_bb.left <= paddle_bb.right &&(ball_bb.top > paddle_bb.top && ball_bb.top < paddle_bb.bottom && ball_bb.bottom < paddle_bb.top && ball_bb.bottom > paddle_bb.bottom))
+					if(ball_bb.left <= paddle_bb.right &&(ball_bb.top > paddle_bb.top && ball_bb.top < paddle_bb.bottom))
 					{
 						bounceRight();
 						PApplet.println("hit LEFT$$$$$$$$$$$$$$$$$$$$$$$$");
 					}
-					*/
-					
-					
+
 				}
 			}
 	}

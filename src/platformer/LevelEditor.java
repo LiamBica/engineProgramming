@@ -3,67 +3,32 @@ package platformer;
 import engine.*;
 import processing.core.PApplet;
 
-public class Launcher extends BaseLauncher 
+public class LevelEditor extends BaseLauncher 
 {
 	public boolean started = false;
 
 	GameManager gm;
 	BallCircle player;
-	int time = parent.millis();
-	int wait = 1000;
-	int seconds = 0;
-	int stopwatch = -4;
 	public boolean shouldStart;
-	int x = parent.width, y = parent.height, vy = 1;
 
-	public Launcher(PApplet p) 
+	public LevelEditor(PApplet p) 
 	{
 		super(p);
 	}
 	
+	float w = 150;
+	float h = 80;
+	float x = 415;
+	float y = 350;
 	
 	public void StartGame() 
 	{
 		super.StartGame();
-		shouldStart = true;
 		GameManager.background = 0;
 		parent.println("Starting");
 	}
 	
-	
-	public void timer() 
-	{
-		if(parent.millis() - time >= wait) 
-		{
-			seconds++;
-			stopwatch++;
-			time = parent.millis();
-		}
-		
-		if(seconds >= 5 && shouldStart) 
-		{
-			shouldStart = false;
 
-			RestartGame();
-		}
-		
-		if(seconds <= 4) 
-		{
-			y-=vy;
-			parent.textAlign(parent.CENTER);
-			parent.text("Recktangle Wrecker", parent.width / 2,y);
-			parent.text("by", parent.width / 2,y + 20);
-			parent.text("Liam Roberts-Bica", parent.width / 2,y + 40);
-			parent.text("Enjoy", parent.width/2, y + 60);
-		}else 
-		{
-			parent.textSize(16);
-			parent.textAlign(parent.CENTER);
-			parent.text("Score: " + BallCircle.points, parent.width/12, parent.height/12);
-			parent.text("Time: " + stopwatch + "s", parent.width/12, parent.height/9);
-		}
-
-	}
 
 	public void RestartGame() 
 	{
@@ -83,19 +48,17 @@ public class Launcher extends BaseLauncher
 		this.gameManager.StartAll();
 		this.started = true;
 	}
-	public void startEditor() 
-	{
-		LevelEditor editor = new LevelEditor(parent);
-		editor.StartGame();
-	}
 
 		
 	
 	public void UpdateAll() 
 	{
 		super.UpdateAll();
-		timer();
-		PApplet.println(seconds);
+		parent.rect(x, y, w, h);
+		parent.rect(x,y,w,h);
+		parent.fill(255);
+		parent.text("Spawn player", x, y);
+		parent.textSize(15);
 	}
 	
 	public void spawnTiles(int numOfTiles) {
@@ -108,11 +71,34 @@ public class Launcher extends BaseLauncher
 			this.gameManager.addGameBoundingBoxes(platform);
 		}
 	}
+	void startButton() 
+	{
+		parent.rect(x,y,w,h);
+		parent.fill(255);
+		parent.text("Spawn player", x, y);
+		parent.textSize(15);
+		if(parent.mousePressed == true)
+		{	//If the mouse position is over the rectangle position
+			if(parent.mouseX> x && parent.mouseX <x+w && parent.mouseY>y && parent.mouseY <y+h) 
+			{
+				//Spawn player
+				parent.background(0);
+				player.update();
+				
+			}
+		}
 	
+		
+	}
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) 
 	{
-		super.mouseClicked(mouseX,mouseY,mouseButton);
-	}
+			
+		if(mouseButton == 37) 
+		{
+			//DoSomething();		
+		}
+			
+	}	
 	
 
 }
