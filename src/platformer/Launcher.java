@@ -6,16 +6,13 @@ import processing.core.PApplet;
 public class Launcher extends BaseLauncher 
 {
 	public boolean started = false;
-
-	GameManager gm;
-	BallCircle player;
 	int time = parent.millis();
 	int wait = 1000;
 	int seconds = 0;
 	int stopwatch = -4;
 	public boolean shouldStart;
 	int x = parent.width, y = parent.height, vy = 1;
-
+	
 	public Launcher(PApplet p) 
 	{
 		super(p);
@@ -27,7 +24,7 @@ public class Launcher extends BaseLauncher
 		super.StartGame();
 		shouldStart = true;
 		GameManager.background = 0;
-		parent.println("Starting");
+		//parent.println("Starting");
 	}
 	
 	
@@ -43,7 +40,6 @@ public class Launcher extends BaseLauncher
 		if(seconds >= 5 && shouldStart) 
 		{
 			shouldStart = false;
-
 			RestartGame();
 		}
 		
@@ -83,19 +79,12 @@ public class Launcher extends BaseLauncher
 		this.gameManager.StartAll();
 		this.started = true;
 	}
-	public void startEditor() 
-	{
-		LevelEditor editor = new LevelEditor(parent);
-		editor.StartGame();
-	}
-
-		
 	
 	public void UpdateAll() 
 	{
 		super.UpdateAll();
 		timer();
-		PApplet.println(seconds);
+		//PApplet.println(seconds);
 	}
 	
 	public void spawnTiles(int numOfTiles) {
@@ -112,7 +101,10 @@ public class Launcher extends BaseLauncher
 	public void mouseClicked(int mouseX, int mouseY, int mouseButton) 
 	{
 		super.mouseClicked(mouseX,mouseY,mouseButton);
+		
 	}
 	
+
+
 
 }

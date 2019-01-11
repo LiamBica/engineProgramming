@@ -23,7 +23,7 @@ public class BallCircle extends Sprite {
 	public BallCircle(PApplet p) 
 	{
 		super(p);
-	}
+	}	
 
 	public BallCircle(PApplet p, float x, float y, Paddle paddle) 
 	{
@@ -60,8 +60,6 @@ public class BallCircle extends Sprite {
 			//If ball falls through it's removed until the game is reset
 			if(this.transform.position.y >= parent.height + 30) 
 			{
-				//this.fill = parent.color(0);
-				//this.stroke = parent.color(0);
 				destroy = true;
 			}
 			//if the ball hits the paddle's Y axis 		//If the ball hits between the right side of the paddle and the middle [    ||====]
@@ -134,6 +132,7 @@ public class BallCircle extends Sprite {
 	@Override
 	public void update() 
 	{
+		
 		x = this.transform.position.x;
 		y = this.transform.position.y;
 		movement();
