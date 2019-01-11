@@ -13,7 +13,6 @@ public class BallCircle extends Sprite {
 	public float y;
 	public float w = 30;
 	public float h = 30;
-	public boolean dead = false;
 	public static int points;
 
 	//Movement speed;
@@ -60,7 +59,8 @@ public class BallCircle extends Sprite {
 			//If ball falls through it's removed until the game is reset
 			if(this.transform.position.y >= parent.height + 30) 
 			{
-				destroy = true;
+				bounceY();
+				this.transform.position.y = parent.height - 200;
 			}
 			//if the ball hits the paddle's Y axis 		//If the ball hits between the right side of the paddle and the middle [    ||====]
 			BoundingBox paddle_bb =  this.paddle.transform.WorldBoundingBox();
@@ -132,7 +132,6 @@ public class BallCircle extends Sprite {
 	@Override
 	public void update() 
 	{
-		
 		x = this.transform.position.x;
 		y = this.transform.position.y;
 		movement();

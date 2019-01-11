@@ -10,8 +10,10 @@ public class Launcher extends BaseLauncher
 	int wait = 1000;
 	int seconds = 0;
 	int stopwatch = -4;
-	public boolean shouldStart;
-	int x = parent.width, y = parent.height, vy = 1;
+	public boolean startOnce;
+	BallCircle ball;
+	int textInitPosX = parent.width, textInitPosY = parent.height;
+	int textSpeedV = 1;
 	
 	public Launcher(PApplet p) 
 	{
@@ -22,8 +24,7 @@ public class Launcher extends BaseLauncher
 	public void StartGame() 
 	{
 		super.StartGame();
-		shouldStart = true;
-		GameManager.background = 0;
+		startOnce = true;
 		//parent.println("Starting");
 	}
 	
@@ -37,20 +38,22 @@ public class Launcher extends BaseLauncher
 			time = parent.millis();
 		}
 		
-		if(seconds >= 5 && shouldStart) 
+		if(seconds >= 5 && startOnce) 
 		{
-			shouldStart = false;
+			startOnce = false;
+			GameManager.background = 200;
 			RestartGame();
 		}
 		
 		if(seconds <= 4) 
 		{
-			y-=vy;
+			GameManager.background = 0;
+			textInitPosY-=textSpeedV;
 			parent.textAlign(parent.CENTER);
-			parent.text("Recktangle Wrecker", parent.width / 2,y);
-			parent.text("by", parent.width / 2,y + 20);
-			parent.text("Liam Roberts-Bica", parent.width / 2,y + 40);
-			parent.text("Enjoy", parent.width/2, y + 60);
+			parent.text("Recktangle Wrecker", parent.width / 2,textInitPosY);
+			parent.text("by", parent.width / 2,textInitPosY + 20);
+			parent.text("Liam Roberts-Bica", parent.width / 2,textInitPosY + 40);
+			parent.text("Enjoy", parent.width/2, textInitPosY + 60);
 		}else 
 		{
 			parent.textSize(16);
@@ -98,11 +101,6 @@ public class Launcher extends BaseLauncher
 		}
 	}
 	
-	public void mouseClicked(int mouseX, int mouseY, int mouseButton) 
-	{
-		super.mouseClicked(mouseX,mouseY,mouseButton);
-		
-	}
 	
 
 

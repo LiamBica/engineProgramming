@@ -47,7 +47,6 @@ public class Paddle extends Sprite {
 	{
 		super.render();
 		parent.pushMatrix();
-		
 		parent.translate(this.transform.position.x, this.transform.position.y);
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);

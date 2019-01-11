@@ -92,14 +92,4 @@ public class GameManager
 	}
 
 
-	public void mouseClicked(int mouseX, int mouseY, int mouseButton) 
-		
-	{
-		for(int i = 0; i < playerGameObjects.size(); i++) 
-		{
-			GameObject g = playerGameObjects.get(i);
-			g.mouseClicked(mouseX, mouseY, mouseButton);
-		}
-		
-	}
 }

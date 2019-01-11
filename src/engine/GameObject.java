@@ -18,7 +18,6 @@ public abstract class GameObject extends ProcessingEntity
 	public ArrayList<GameComponent> components;
 	public Transform transform;
 	public void checkCollisions( BoundingBox bb) {}
-	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {}
 	
 	
 	
